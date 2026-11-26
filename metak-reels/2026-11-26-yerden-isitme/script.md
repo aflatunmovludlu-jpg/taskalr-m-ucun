@@ -1,6 +1,10 @@
 # METAK Reels — 2026-11-26 — Yerdən isitmə borusu
 
-**Formula:** STOP · **Müddət:** 44 s (səs 41.7 s) · **Səs:** ElevenLabs eleven_v3, Arif - Azerbaijani Narrator
+**Formula:** STOP
+
+**v2 (əsas):** `METAK-reels-2026-11-26-yerden-isitme-v2.mp4` — 47 s. Səs: Abbas - Engaging Delivery (daha canlı, teqlər + böyük hərf vurğuları), pauzalar qısaldılıb, +8% temp. ElevenLabs fon musiqisi (sidechain ducking) + 12 səs effekti, −14 LUFS.
+
+**v1:** `METAK-reels-2026-11-26-yerden-isitme.mp4` — 44 s, Arif səsi, musiqisiz (istifadəçi bəyənmədi).
 
 ## Ssenari (ekranda / səsdə)
 
@@ -29,3 +33,9 @@ Döşəmənin altında gizli oğru? 🕵️ Adi borular oksigeni içəri buraxı
 ## Faktlar (mənbələr)
 - Oksigen baryeri olmayan plastik borulardan oksigen keçir, suya qarışır və polad/çuqun hissələri (kombi, nasos, klapanlar) korroziyaya uğradır — REHAU, Emmeti, Onninen texniki materialları; DIN 4726 oksigen keçiriciliyinə limit qoyur.
 - 5 qatlı boruda baryer (adətən EVOH) iki yapışqan qat arasında yerləşir.
+
+## v2 audio miks
+- Səs: `voice-abbas.mp3` (take B; 0.35 s-dən uzun pauzalar 0.24 s-ə endirilib, `atempo=1.08`).
+- Musiqi: `audio/music.mp3` (eleven_music_v2_5, 46 s, instrumental), həcm 0.32, `sidechaincompress` ilə səsin altında endirilir.
+- SFX (`audio/*.mp3`, eleven_text_to_sound_v3): tiles 0.7, sneaky+pop 3.0, whoosh keçidlərdə, pop çiplərdə, bubbles boruda, riser gərginlikdə, rust paslanmada, powerdown kombi sönəndə, slide qatlar açılanda, shield O2 sıçrayanda, plane kağız təyyarədə, chime loqoda (animasiya vaxtı; `reel.html`-dəki WARP ilə yeni səsə çevrilir).
+- Final: `loudnorm=I=-14:TP=-1.5` → `mix.m4a`.

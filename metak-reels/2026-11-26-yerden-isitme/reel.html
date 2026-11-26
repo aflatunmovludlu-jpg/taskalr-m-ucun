@@ -8,7 +8,8 @@
   METAK REELS · 2026-11-26 · Yerdən isitmə borusu və oksigen baryeri
   Üslub: Kurzgesagt-ilhamlı 3D (three.js) · 1080x1920 · 30 fps · 44 s
   Formula: STOP (Surprise → Tension → Outcome → Pass it on)
-  Səs: ElevenLabs eleven_v3, "Arif - Azerbaijani Narrator" (take A, 41.7 s)
+  Səs (v2): ElevenLabs eleven_v3, "Abbas - Engaging Delivery" (take B, pauzalar qısaldılıb, +8%% temp, 45.1 s) + ElevenLabs musiqi və SFX
+  Beat vaxtları aşağıda v1 səsinə görədir; WARP cədvəli onları yeni səsə uyğunlaşdırır.
 
   BEAT LIST
   #  start-end    words                                   what we see
@@ -51,10 +52,14 @@
   <span id="msg">0.00 s</span>
   <button id="export" class="go">Export video</button>
 </div>
-<audio id="voice" src="voice.mp3" preload="auto"></audio>
+<audio id="voice" src="mix.m4a" preload="auto"></audio>
 <script>
 /* ---------- 1. SETTINGS ---------- */
-const CONFIG = { width: 1080, height: 1920, fps: 30, duration: 44, background: "#0d1440" };
+const CONFIG = { width: 1080, height: 1920, fps: 30, duration: 47.06, background: "#0d1440" };
+// v2: voice re-recorded (Abbas, livelier). The animation was timed to the v1 voice, so draw() maps
+// new-voice time -> animation time through these word anchors [newTime, animTime].
+const WARP = [[0.0, 0.0], [0.056, 0.07], [3.854, 3.12], [5.742, 5.647], [9.01, 8.367], [10.13, 9.187], [11.402, 10.127], [13.643, 12.548], [15.187, 13.895], [17.471, 16.095], [19.418, 17.935], [20.199, 18.395], [21.088, 18.935], [22.514, 19.835], [24.171, 20.952], [25.912, 23.447], [28.158, 25.455], [28.491, 26.055], [29.177, 26.735], [32.547, 29.815], [35.892, 32.775], [37.404, 34.155], [39.244, 35.914], [40.133, 36.788], [41.084, 37.599], [43.175, 39.415], [45.006, 41.695], [47.06, 44.0]];
+function warp(t) { for (let i = 1; i < WARP.length; i++) { const [n0, o0] = WARP[i - 1], [n1, o1] = WARP[i]; if (t <= n1) return o0 + (o1 - o0) * Math.max(0, (t - n0)) / (n1 - n0); } return WARP[WARP.length - 1][1]; }
 
 /* ---------- 2. HELPERS (deterministic) ---------- */
 const W = CONFIG.width, H = CONFIG.height;
@@ -580,7 +585,8 @@ function drawScene(s, t) {
   s.ov(t);
 }
 
-function draw(t) {
+function draw(t) { drawAnim(warp(t)); }
+function drawAnim(t) {
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.fillStyle = CONFIG.background; ctx.fillRect(0, 0, W, H);
   const X2 = .22;
   for (const s of SCENES) {

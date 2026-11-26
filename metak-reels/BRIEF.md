@@ -17,12 +17,18 @@ Hər gün saat 12:00-da (Bakı vaxtı) METAK-ın məhsulları ilə bağlı bir m
 - Son hissədə METAK məhsulunun reklamı.
 
 ## Səsləndirmə (ElevenLabs)
-- Model: `eleven_v3`, səs: **Arif - Azerbaijani Narrator** (`voice_id: ZQJv3hwvRAIC7fvWZ1Qr`), 1 variant.
+- Model: `eleven_v3`, səs: **Abbas - Engaging Delivery** (`voice_id: IVMbfLv3KqUc4qDj6Yif`). İstifadəçi "Arif" səsini bəyənmədi — **canlı, effektli, vurğulu** ifa istəyir.
+- Canlılıq üçün teqlər: girişdə `[whispers]` → `[dramatically]`, faydada `[excited]`, problemdə `[serious]`/`[dramatically]`, sonda `[warmly]`/`[confident]`. Açar sözləri BÖYÜK hərflə yaz (OKSİGEN!, PASLANDIRIR, KƏSİR!), nida işarələri işlət.
 - **Vurğu qaydaları** (IPA ilə yazılır, slash-lar arasında):
   - plastik → `/plasˈtik/` (vurğu son hecada: plas-TİK)
   - METAK → `/meˈtak/` (vurğu son hecada: me-TAK; hərf-hərf oxunmasın)
-- Emosiya teqləri: `[curious]`, `[warmly]`, `[serious]`, `[confident]`.
+- Abbas yavaş və pauzalı danışır (~95 söz ≈ 55 s). Ssenarini ~80–85 sözdə saxla; lazım olsa 0.35 s-dən uzun pauzaları 0.24 s-ə qədər qısalt və `atempo=1.08` tətbiq et (50 s limitinə görə).
 - Söz vaxtları üçün səsi `eleven_scribe_v1` ilə transkripsiya et (pulsuz), səhnələri sözlərə bağla.
+
+## Fon musiqisi və səs effektləri (ElevenLabs)
+- Musiqi: `eleven_music_v2_5`, instrumental, `duration_seconds` = video uzunluğu; sirli/oynaq giriş → gərgin orta → parlaq, inamlı final. Səsin altında sidechain ilə endirilir (həcm ~0.32).
+- SFX: `eleven_text_to_sound_v3`, hər səs ayrıca node, 1 variant: whoosh (keçidlər), pop (yazılar/çiplər), sneaky (oğru), tiles, bubbles, riser (gərginlik), rust, powerdown, slide, shield, plane, chime (loqo). Hazır fayllar: `2026-11-26-yerden-isitme/audio/` (yenidən istifadə etmək olar).
+- Miks: səs + musiqi (ducking) + SFX (`adelay` ilə animasiya hadisələrinə), `loudnorm=I=-14:TP=-1.5` (Instagram). Nümunə: 2026-11-26 qovluğundakı `mix.m4a` necə qurulub — `script.md`-yə bax.
 
 ## METAK məhsulları (bildiyimiz)
 - 5 qatlı, oksigen baryerli yerdən isitmə borusu (istifadəçi təsdiqi).
